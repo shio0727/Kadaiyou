@@ -13,11 +13,11 @@
 
   バージョン：6.4.2
   
-![Image 2](img/puma-down.png)
+![Image 2](img/puma.png)
 
   APサーバを終了させたとき引き続きアクセスできなくなる
   
-![Image 3](img/puma.png)
+![Image 3](img/puma-down.png)
 
 
 
