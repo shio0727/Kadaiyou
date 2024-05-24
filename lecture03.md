@@ -34,6 +34,8 @@
 
 ![Image 5](img/dbserver-error.png)  
 
+Railsの構成管理ツール：Bundler
+
   
   
 ## 講義を通しての感想  
