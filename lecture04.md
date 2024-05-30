@@ -21,13 +21,18 @@
 
 ![image 5](img4/rds-inbound-rule.png)　　
 
-- RDSのサブネット　　
+- RDSのサブネット  
 
 
+![image 6](evidence1.png)  
+
+![image 7](evidence2.png)  
+
+![image 8](evidence3.png)
 
 - EC2からRDSの接続  
 
-![image 6](img4/ec2-to-rds.png)  
+![image 9](img4/ec2-to-rds.png)  
 
 - #### 感想  
 
