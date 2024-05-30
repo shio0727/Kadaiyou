@@ -24,11 +24,11 @@
 - RDSのサブネット  
 
 
-![image 6](evidence1.png)  
+![image 6](img4/evidence1.png)  
 
-![image 7](evidence2.png)  
+![image 7](img4/evidence2.png)  
 
-![image 8](evidence3.png)
+![image 8](img4/evidence3.png)
 
 - EC2からRDSの接続  
 
