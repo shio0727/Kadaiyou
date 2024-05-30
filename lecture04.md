@@ -1,5 +1,6 @@
 # 第四回課題　　
 
+ 
 - VPC及びサブネットの構築
 
 ![image 1](img4/vcp.png)
@@ -18,7 +19,11 @@
 
 - RDSのインバウンドルール  
 
-![image 5](img4/rds-inbound-rule.png)
+![image 5](img4/rds-inbound-rule.png)　　
+
+- RDSのサブネット　　
+
+
 
 - EC2からRDSの接続  
 
