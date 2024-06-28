@@ -13,6 +13,6 @@
 ```bash:title
 curl --unix-socket /home/ec2-user/raisetech-live8-sample-app/tmp/sockets/puma.sock http://localhost/
 ``` 
-![unixsocketpuma](img5/step2/dousakakuninn.png)
+
 
 
