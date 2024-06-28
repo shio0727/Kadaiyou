@@ -62,7 +62,7 @@
 ```
 - database.ymlの修正
 
-[database.yml.sample](img5/step1/config/database.yml.sample)
+[database.yml.sample](img5/step1/database.yml.sample)
 ```bash:title
    $ vi ./config/database.yml
    $ cat ./config/database.yml
