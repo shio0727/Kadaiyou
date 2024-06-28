@@ -15,9 +15,10 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: admin
   password: RDSのパスワード
-  host: RDSのエンドポイント
+  host: RDSのエンドポイント  
   port: 3306
-  
+
+
 development:
   <<: *default
   database: raisetech_live8_sample_app_development
