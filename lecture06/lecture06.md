@@ -32,4 +32,4 @@ AWS Pricing Calculatorにて作成
 
 ![6gatu](lecture06/img/8six.png)  
 ![utiwake](lecture06/img/9kakinn.png)
-![ec2](lecture06/img/7ec2.png)
+![ec2](./lecture06/img/7ec2.png)
