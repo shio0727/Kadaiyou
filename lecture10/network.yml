@@ -1,0 +1,175 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: for assignment of lecture10
+
+Parameters: 
+  Namebase:
+    Type: String
+    Default: lecture10
+    
+    
+Resources:
+
+#VPC
+Lecture10vpc:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 10.0.0.0/16
+      EnableDnsSupport: true
+      EnableDnsHostnames: true
+      InstanceTenancy: default
+      Tags:
+        - Key: Name
+          Value: !Sub ${Namebase}-vpc
+  
+#subnet
+Lecture10pubsubnet1:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: !Select [ 0, !GetAZs ]
+      CidrBlock: 10.0.0.0/24
+      MapPublicIpOnLaunch: true
+      Tags:
+        - Key: Name
+          Value: !Sub ${Namebase}-subnet-public1
+      VpcId: !Ref Lecture10vpc
+    
+Lecture10pubsubnet2:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: !Select [ 1, !GetAZs ]
+      CidrBlock: 10.0.1.0/24
+      MapPublicIpOnLaunch: true
+      Tags:
+        - Key: Name
+          Value: !Sub ${Namebase}-subnet-public2
+      VpcId: !Ref Lecture10vpc
+
+Lecture10prisubnet1:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: !Select [ 0, !GetAZs ]
+      CidrBlock: 10.0.2.0/24
+      MapPublicIpOnLaunch: false
+      Tags:
+        - Key: Name
+          Value: !Sub ${Namebase}-subnet-private1
+      VpcId: !Ref Lecture10vpc
+
+Lecture10prisubnet2:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: !Select [ 1, !GetAZs ]
+      CidrBlock: 10.0.3.0/24
+      MapPublicIpOnLaunch: false
+      Tags:
+        - Key: Name
+          Value: !Sub ${Namebase}-subnet-private2
+      VpcId: !Ref Lecture10vpc
+      
+#rdssubgroup
+Lecture10rdssubgroup:
+    Type: AWS::RDS::DBSubnetGroup
+    Properties:
+      DBSubnetGroupDescription: for rds
+      SubnetIds:
+        - !Ref Lecture10prisubnet1
+        - !Ref Lecture10prisubnet2
+      Tags:
+        - Key: Name
+          Value: !Sub ${Namebase}-rds-subnet-group
+          
+#internetgateway
+Lecture10internetgateway:
+    Type: AWS::EC2::InternetGateway
+    Properties: 
+      Tags:
+        - Key: Name
+          Value: !Sub ${Namebase}-igw
+
+Lecture10igwattach:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties: 
+      InternetGatewayId: !Ref Lecture10internetgateway
+      VpcId: !Ref Lecture10vpc
+          
+#routetable
+Lecture10pubroutetable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      Tags:
+        - Key: Name
+          Value: !Sub ${Namebase}-rtb-public
+      VpcId: !Ref Lecture10vpc
+  
+Lecture10Priroutettable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      Tags:
+        - Key: Name
+          Value: !Sub ${Namebase}-rtb-private
+      VpcId: !Ref Lecture10vpc
+
+Lecture10pubroute:
+    Type: AWS::EC2::Route
+    DependsOn: Lecture10internetgateway
+    Properties:
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId: !Ref Lecture10internetgateway
+      RouteTableId: !Ref Lecture10pubroutetable
+
+Lecture10PubSub1Association:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId: !Ref Lecture10pubroutetable
+      SubnetId: !Ref Lecture10pubsubnet1
+
+Lecture10PubSub2Association:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId: !Ref Lecture10pubroutetable
+      SubnetId: !Ref Lecture10pubsubnet2
+
+Lecture10PriSub1Association:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId: !Ref Lecture10Priroutettable
+      SubnetId: !Ref Lecture10prisubnet1
+
+Lecture10PriSub2Association:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId: !Ref Lecture10Priroutettable
+      SubnetId: !Ref Lecture10prisubnet2
+      
+      
+Outputs:
+  Lecture10vpc:
+    Value: !Ref Lecture10vpc
+    Export:
+      Name: !Sub ${AWS::StackName}-Lecture10vpc
+
+  Lecture10pubsubnet1:
+    Value: !Ref Lecture10pubsubnet1
+    Export:
+      Name: !Sub ${AWS::StackName}-Lecture10pubsubnet1
+
+  Lecture10pubsubnet2:
+    Value: !Ref Lecture10pubsubnet2
+    Export:
+      Name: !Sub ${AWS::StackName}-Lecture10pubsubnet2
+
+  Lecture10prisubnet1:
+    Value: !Ref Lecture10prisubnet1
+    Export:
+      Name: !Sub ${AWS::StackName}-Lecture10prisubnet1
+
+  Lecture10prisubnet2:
+    Value: !Ref Lecture10prisubnet2
+    Export:
+      Name: !Sub ${AWS::StackName}-Lecture10prisubnet2
+
+  Lecture10rdssubgroup:
+    Value: !Ref Lecture10rdssubgroup
+    Export:
+      Name: !Sub ${AWS::StackName}-Lecture10rdssubgroup
+
