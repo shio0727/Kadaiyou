@@ -1,0 +1,47 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Application_Layer Template
+
+Parameters:
+  Namebase:
+    Type: String
+    Default: lecture10-clf
+  DBPassword:
+    NoEcho: 'true'
+    Type: String
+    MinLength: '8'
+    MaxLength: '41'
+    AllowedPattern: "[a-zA-Z0-9]*"
+  
+Resources:
+# rds作成
+  RDS:
+    Type: AWS::RDS::DBInstance
+    Properties:
+    # パブリックアクセス
+      StorageType: gp2
+      AllocatedStorage : 20
+      PubliclyAccessible: false
+    # インスタンス識別子
+      AvailabilityZone: ap-northeast-1a
+      DBInstanceClass: db.t3.micro
+      Port: 3306
+      BackupRetentionPeriod: 7
+      MasterUsername: admin
+      MasterUserPassword: !Ref DBPassword
+      DBInstanceIdentifier: !Sub ${Namebase}-rds
+      DBName: RDS10
+      Engine: MySQL
+      EngineVersion: 8.0.35
+      DBSubnetGroupName: !Ref RDSSubnetgroup
+      VPCSecurityGroups:
+        - !ImportValue SecurityLayer-SecurityGroupRDS
+        
+  # サブネットグループ
+  RDSSubnetgroup:
+    Type: AWS::RDS::DBSubnetGroup
+    Properties:
+      DBSubnetGroupDescription: for RDS
+      DBSubnetGroupName: SampleRDSSubnetgroup
+      SubnetIds:
+        - !ImportValue lecture10-clf-PrivateSubnet1id
+        - !ImportValue lecture10-clf-PrivateSubnet2id
