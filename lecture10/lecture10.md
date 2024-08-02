@@ -3,10 +3,10 @@
 CloudFormationを使用した環境構築の自動化  
 
 ## 1 ネットワーク環境の構築
-[network](lecture10/network.yml)  
+[network](/lecture10/network.yml)  
 
 VPC  
-![network](/lecture10/network.yml) 
+![network](./lecture10/network/VPC.png) 
 
 パブリックサブネット  
 ![network](lecture10/network/pubsub1.png)   
