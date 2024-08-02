@@ -6,7 +6,7 @@ CloudFormationを使用した環境構築の自動化
 [network](/lecture10/network.yml)  
 
 VPC  
-![network](./lecture10/network/VPC.png) 
+![network](./network/VPC.png) 
 
 パブリックサブネット  
 ![network](lecture10/network/pubsub1.png)   
