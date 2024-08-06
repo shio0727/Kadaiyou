@@ -6,74 +6,88 @@ CloudFormationを使用した環境構築の自動化
 [network](./yml/1network.yml)  
 
 VPC  
-![network](./network/VPC.png) 
+![network](./network/vpc.png) 
 
 パブリックサブネット  
-![network](lecture10/network/pubsub1.png)   
-![network](lecture10/network/pubsub2.png)  
+![network](./network/pubsub1.png)   
+![network](./network/pubsub2.png)  
 
 プライベートサブネット  
-![network](lecture10/network/prisub1.png)   
-![network](lecture10/network/prisub2.png)  
+![network](./network/prisub1.png)   
+![network](./network/prisub2.png)  
 
 ルートテーブル  
 パブリック用  
-![network](lecture10/network/rtb2.png)  
+![network](./network/pubrtb.png)  
 
 プライベート用  
-![network](lecture10/network/rtb1.png)
+![network](./network/prirtb.png)
 
 インターネットゲートウェイ  
-![network](lecture10/network/igw.png)
+![network](./network/igw.png)
 
 ## 2 セキュリティグループ  
-[network](lecture10/security.yml)  
+[network](./yml/2security.yml)  
 
 EC2のセキュリティグループ  
-![network](lecture10/sec/SECEC2.png)  
+![network](./sec/SECEC2.png)  
 
 RDSのセキュリティグループ  
-![network](lecture10/sec/SECRDS.png)  
+![network](./sec/secrds.png)  
 
 ALBのセキュリティグループ  
-![network](lecture10/sec/SECALB.png)  
+![network](./sec/secalb.png)  
 
 ## 3 EC2 
-[application](lecture10/application.yml)  
+[application](./yml/3application.yml)  
 
-作成したEC2とSSH接続の確認  
-![application](lecture10/app/ec2.png)  
+作成したEC2  
+![application](./app/ec2.png)  
 
 IAMRole  
-![application](lecture10/app/IAMrole.png)  
+![application](./app/iamrole.png)  
 
 ## 4 RDS  
-[application2](lecture10/application2.yml)  
+[application2](./yml/4pplication.yml)  
 
 作成したRDS  
-![application](lecture10/app/RDS2.png)  
-
-RDS接続確認  
-![application](lecture10/app/RDS.png)  
+![application](./app/rds.png)  
 
 ## 5 ALB  
-[application3](lecture10/application3.yml)  
+[application3](./yml/5application.yml)  
 
 作成したALB  
-![application](lecture10/app/ALB.png)
+![application](./app/alb.png)
 
 ターゲットグループ  
-![application](lecture10/app/tg.png)  
+![application](./app/tg.png)  
 
 ## 6 S3  
-[application4](lecture10/application4.yml)  
+[application4](./yml/6application.yml)  
 
-作成したS3と動作確認  
-![application](lecture10/app/s3.png)  
+作成したS3 
+![application](./app/s3.png)  
+
+## 7 動作確認  
+
+SSH接続  
+![application](./dousakakuninn/ssh.png)　　
+
+RDS確認  
+![application](./dousakakuninn/RDS.png)　　
+
+nginx起動確認  
+![application](./dousakakuninn/nginx.png)  
+
+S3バケット動作確認  
+![application](./dousakakuninn/s3.png)  
+
+
+
 
 
 ## 感想　　
-スタック作成時に何度もエラーを出された。その都度対応していくうちにエラー文を読むと、引っかかっている部分がわかり自力で解決できたことに成長を感じた。　　
+スタック作成時に何度もエラーを出された。その都度対応していくうちにエラー文を読むと、引っかかっている部分がわかり自力で解決できたことに成長を感じた。  
 今回は初めてのクラウドフォーメーションを利用しての環境構築であった為、テンプレートファイルを細かく分けた方がやりやすいのでは？と考えたが、メンテナンスや管理のことを考えると、一つにまとめた方がよいのではないかと思った。
 
 
