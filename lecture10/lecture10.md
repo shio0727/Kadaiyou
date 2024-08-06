@@ -30,7 +30,7 @@ VPC
 [network](./yml/2security.yml)  
 
 EC2のセキュリティグループ  
-![network](./sec/SECEC2.png)  
+![network](./sec/secec2.png)  
 
 RDSのセキュリティグループ  
 ![network](./sec/secrds.png)  
