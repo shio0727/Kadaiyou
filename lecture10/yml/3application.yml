@@ -49,6 +49,19 @@ Resources:
           Value: !Sub  ${NameBase}-ec21a
       KeyName: kadai4-key
       
+# Elastic IP作成
+  ElasticIP:
+    Type: AWS::EC2::EIP
+    Properties:
+      Domain: vpc
+
+# EIPをEC2にアタッチ
+  EIPAssociation:
+    Type: AWS::EC2::EIPAssociation
+    Properties:
+      InstanceId: !Ref EC2
+      EIP: !Ref ElasticIP
+      
       
 # IAMロールS3接続
   S3AccessRole:
