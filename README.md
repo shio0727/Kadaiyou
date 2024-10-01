@@ -6,11 +6,11 @@
 - EC2上でサンプルアプリケーションをデプロイ  
 - CloudFormationを用いて環境構築を自動化
 ### 現時点でのインフラ構成図  
-![構成図](readmeimg/kouseizu.drawio.png)  
+![構成図](/readmeimg/kouseizu.drawio.png)  
 ### 学習記録  
 
 |講座|概要|提出課題|備考|
-|:---:|:---|:---|:---|
+|:---:|:---|:----|:---|
 |1|**導入**<ul><li> AWSアカウントの作成<li> IAMユーザーの作成<li> MFAの設定<li> Cloud9の作成|AWSアカウントの作成<br> discordにて提出|
 |2|**バージョン管理システムGitHub**<ul><li>GitHub基礎<li> Markdown|[lecture02](lecture02.md)|PRデモンストレーション有|
 |3|**Webアプリケーション**<ul><li>Webアプリケーションとは<li> GemとBundler|[lecture03](lecture03.md)|Railsによるアプリケーション起動デモンストレーション有|
