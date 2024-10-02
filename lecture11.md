@@ -21,7 +21,7 @@ $ serverspec-init
 ![syashinn1](img11/serverspec2.png)
 ```
 #### 3 テストコードを記述    
-今回は授業で配布された[テストコード]((https://github.com/MasatoshiMizumoto/raisetech_documents/tree/main/aws/samples/serverspec))を使用する。  
+今回は授業で配布された[テストコード](https://github.com/MasatoshiMizumoto/raisetech_documents/tree/main/aws/samples/serverspec)を使用する。  
 ```bash:title
 $ cd spec/localhost  
 #local環境にてテストを実行  
