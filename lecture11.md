@@ -18,8 +18,9 @@ $ gem install serverspec
 $ serverspec-init  
 #コマンドを入力すると以下写真のように選択肢が表示される  
 #選択が終わるとspecディレクトリが表示される  
-![syashinn1](img11/serverspec2.png)
 ```
+![syashinn1](img11/serverspec2.png)
+
 #### 3 テストコードを記述    
 今回は授業で配布された[テストコード](https://github.com/MasatoshiMizumoto/raisetech_documents/tree/main/aws/samples/serverspec)を使用する。  
 ```bash:title
