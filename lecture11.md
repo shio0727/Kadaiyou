@@ -22,18 +22,53 @@ $ serverspec-init
 ![syashinn1](img11/serverspec2.png)
 
 #### 3 テストコードを記述    
-今回は授業で配布された[テストコード](https://github.com/MasatoshiMizumoto/raisetech_documents/tree/main/aws/samples/serverspec)を使用する。  
+今回は授業で配布された[テストコード](https://github.com/MasatoshiMizumoto/raisetech_documents/tree/main/aws/samples/serverspec)を元にカスタマイズして使用する。  
 ```bash:title
 $ cd spec/localhost  
 #local環境にてテストを実行  
 $ vim sample_spec.rb  
 #テストコードを打ち込む  
 ```
+#### テストコード  
+```bash:title  
+require 'spec_helper'
+
+listen_port = 80
+#Nignxがインストール済みであるか
+describe package('nginx') do
+  it { should be_installed }
+end
+
+#Nignxが起動しているか
+describe service('nginx') do
+  it { should be_running }
+end
+
+#gitがインストールしてあるか
+describe package('git') do
+  it { should be_installed }
+end
+
+#指定のポートがリッスンであるか
+describe port(listen_port) do
+  it { should be_listening }
+end
+
+#curlでHTTPアクセスして200 OKが返ってくるか
+describe command('curl http://127.0.0.1:#{listen_port}/_plugin/head/ -o /dev/null -w "%{http_code}\n" -s') do
+  its(:stdout) { should match /^200$/ }
+end
+
+#指定のバージョンがインストールされているか 
+describe command('ruby --version') do
+  its(:stdout){ should match /Bundler version 2\.3\.14/ }
+end
+
+```  
 #### 4 テスト実行  
-```bash:title
 $ rake spec  
 #localhostディレクトリにて  
-```
+
 成功した時  
 ![seikou](img11/seikou.png)  
 失敗（テストコードで打ち込んだポート番号が違う）  
