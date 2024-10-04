@@ -59,10 +59,11 @@ describe command('curl http://127.0.0.1:#{listen_port}/_plugin/head/ -o /dev/nul
   its(:stdout) { should match /^200$/ }
 end
 
-#指定のバージョンがインストールされているか 
-describe command('ruby --version') do
-  its(:stdout){ should match /Bundler version 2\.3\.14/ }
+#コマンドの標準出力から指定のバージョンがインストールされているか
+describe command('ruby -v') do
+  its(:stdout) { should include '3.2.3' }
 end
+
 
 ```  
 #### 4 テスト実行  
