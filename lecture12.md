@@ -4,9 +4,9 @@ CircleCIのサンプルconfigをGitリポジトリに取り込み、動作させ
 Saas型のCI/CDサービスの事。CI/CDツールとはアプリケーションやインフラ環境のコードに関わる部分のテストを自動化し、常にリリース可能な状態にする。  
 ### CircleCIのアカウント登録と初期設定と動作確認  
 [公式ドキュメント](https://circleci.com/docs/ja/getting-started/)に沿って操作し、動作について理解を深める。  
-![sayhellow](img12/handson.png)  
+![sayhello](img12/handson.png)  
 ### サンプルconfigをリポジトリに組み込む  
-- sayhellowの際に作成したブランチをリモートからローカルにクローンする  
+- sayhelloの際に作成したブランチをリモートからローカルにクローンする  
 - git公開鍵を登録  
 
 ```bash:title  
