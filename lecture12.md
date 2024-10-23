@@ -43,8 +43,7 @@ workflows:
       
 ### warning発生  
 ![warning](img12/shiltupai.png)  
-  
-- warnning対処  
+
 W2001 パラメーターが使用されていない。  
 →該当するパラメーターを削除  
 W3010  ハードコーディングエラー　　
