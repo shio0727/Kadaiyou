@@ -5,12 +5,12 @@ Parameters:
   Namebase:
     Type: String
     Default: lecture10
-  # DBPassword:
-  #  NoEcho: 'true'
-  #  Type: String
-  #  MinLength: '8'
-  #  MaxLength: '41'
-  #  AllowedPattern: "[a-zA-Z0-9]*"
+　DBPassword:
+    NoEcho: 'true'
+    Type: String
+    MinLength: '8'
+    MaxLength: '41'
+    AllowedPattern: "[a-zA-Z0-9]*"
   
 Resources:
 # rds作成
@@ -29,8 +29,7 @@ Resources:
       Port: 3306
       BackupRetentionPeriod: 7
       MasterUsername: admin
-      # MasterUserPassword: !Ref DBPassword
-      MasterUserPassword: "{{resolve:ssm-secure:/user/password}}"
+      MasterUserPassword: !Ref DBPassword
       DBInstanceIdentifier: !Sub ${Namebase}-rds
       DBName: RDS10
       Engine: MySQL
