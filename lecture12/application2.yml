@@ -5,7 +5,7 @@ Parameters:
   Namebase:
     Type: String
     Default: lecture10
-　DBPassword:
+  DBPassword:
     NoEcho: 'true'
     Type: String
     MinLength: '8'
@@ -22,9 +22,7 @@ Resources:
       AllocatedStorage : 20
       PubliclyAccessible: false
     # インスタンス識別子
-       AvailabilityZone: !Select 
-        - 0
-        - Fn::GetAZs: !Ref AWS::Region
+      AvailabilityZone: ap-northeast-1a
       DBInstanceClass: db.t3.micro
       Port: 3306
       BackupRetentionPeriod: 7
