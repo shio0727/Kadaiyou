@@ -13,19 +13,6 @@ Parameters:
       - t2.micro
       - m1.small
       - m1.large
-  DBInstanceIdentifier:
-    Type: String
-  DBInstanceType:
-    Type: String
-    Default: db.t2.micro
-    AllowedValues:
-      - db.t2.micro
-      - db.t2.small
-      - db.t2.medium
-  DBSubnetGroupDescription:
-    Type: String
-  S3BucketName:
-    Type: String
   EC2AMI:
     Type: AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>
     Default: "/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2"
