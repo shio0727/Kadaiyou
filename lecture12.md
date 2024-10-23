@@ -44,9 +44,9 @@ workflows:
 ### warning発生  
 ![warning](img12/shiltupai.png)  
 
-W2001 パラメーターが使用されていない。  
+#### W2001 パラメーターが使用されていない。  
 →該当するパラメーターを削除  
-W3010  ハードコーディングエラー　　
+#### W3010  ハードコーディングエラー　　
 ```bash:title  
 AvailabilityZone: !Select 
         - 0
@@ -54,7 +54,7 @@ AvailabilityZone: !Select
         
 #AvailabilityZone: ap-northeast-1から上記のように修正  
 ```  
-W1011 動的参照を使用していないため  
+#### W1011 動的参照を使用していないため  
 ```bash:title  
 MasterUserPassword: "{{resolve:ssm-secure:rdskey:1}}"  
 #パラメーターストアでパラメーターを作成したのち、 MasterUserPassword: !Ref DBPasswordから上記のように変更  
