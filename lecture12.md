@@ -41,46 +41,31 @@ workflows:
 
 ```  
       
-warning発生  
+### warning発生  
 ![warning](img12/shiltupai.png)  
-warningコードW2001を検知対象外にすることによりwarningが出されないようにする。  
-```bash:title  
   
-version: 2.1
-orbs:
-  python: circleci/python@2.0.3
-jobs:
-  cfn-lint:
-    executor: python/default
-    steps:
-      - checkout
-      - run: pip install cfn-lint
-      - run:
-          name: run cfn-lint
-          command: |
-            cfn-lint -i W3002 -i W2001 -t ~/lecture12/*.yml
-
-workflows:
-  raisetech:
-    jobs:
-      - cfn-lint  
-      
+- warnning対処  
+W2001 パラメーターが使用されていない。  
+→該当するパラメーターを削除  
+W3010  ハードコーディングエラー　　
+```bash:title  
+AvailabilityZone: !Select 
+        - 0
+        - Fn::GetAZs: !Ref AWS::Region  
+        
+#AvailabilityZone: ap-northeast-1から上記のように修正  
 ```  
-変更し再試行  
-![seikou](img12/seikou.png)  
-- 今回操作して思った事  
+W1011 動的参照を使用していないため  
+```bash:title  
+MasterUserPassword: "{{resolve:ssm-secure:rdskey:1}}"  
+#パラメーターストアでパラメーターを作成したのち、 MasterUserPassword: !Ref DBPasswordから上記のように変更  
+```
+pushしたのち再び再試行  
+![](img12/saisyuu.png)  
+
+### 今回操作して思った事  
 今回は初めて行った為、公式ドキュメントに沿って作成したブランチをサンプルconfigに利用したが、あらかじめブランチ作成しそれを利用することもできるので次回からはあらかじめブランチを製作した後にCircleCIで使用した方が良いと思った。
-
-### 補足内容  
-
-- Warning発生時に出現していたW2001以外のWarningについて  
-W2001を検知対象外にした際に出現しなくなった。  
-- 警告コード内容  
-W2001 パラメーターが使用されていない  
-W3010 可用性ゾーンのプロパティはハードコードすべきではない  
-W1011 シークレットのパラメーターを使用する代わりに動的参照を使用する。
-
-![tuika](img12/tuika.png) 
+課題を提出した段階では、Warningはエラーではないと考え検知えお外すようにconfigを書き換えたが、ベストプラクティスに沿って考えると修正した方良いことに気が付きymlファイルを修正した。今回CircleCIを試したことで、動的参照についても学ぶことができたためとても有意義であった。
 
 
 
