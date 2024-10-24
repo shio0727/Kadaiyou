@@ -1,0 +1,55 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Application_Layer Template
+
+Parameters:
+  NameBase: 
+    Description: for application
+    Type: String
+    Default: lecture10
+  IpAddressType:
+    Type: String
+    Default: "ipv4"
+    
+Resources:
+ # TargetGroup
+ ALBTargetGroup: 
+    Type: AWS::ElasticLoadBalancingV2::TargetGroup
+    Properties:
+      Name: !Sub ${NameBase}-tg
+      Tags:
+        - Key: Name
+          Value: !Sub ${NameBase}-tg
+      Port: 80
+      Protocol: HTTP
+      Matcher:
+        HttpCode: '200'
+      VpcId: !ImportValue lecture10-VPCid
+      TargetType: instance
+      Targets:
+        - Id: !ImportValue lecture10-ec2id
+ # ALB
+ ALB:
+    Type: AWS::ElasticLoadBalancingV2::LoadBalancer
+    Properties:
+      Type: "application"
+      Scheme: "internet-facing"
+      Name: !Sub ${NameBase}-alb
+      IpAddressType: !Ref IpAddressType
+      Subnets:
+        - !ImportValue lecture10-PublicSubnet1id
+        - !ImportValue lecture10-PublicSubnet2id
+      SecurityGroups:
+        - !ImportValue lecture10-SecurityGroupALB
+      Tags:
+        - Key: Name
+          Value: !Sub ${NameBase}-alb
+ #listener
+ ListenerHTTP:
+    Type: AWS::ElasticLoadBalancingV2::Listener
+    Properties:
+      DefaultActions:
+        - TargetGroupArn: !Ref ALBTargetGroup
+          Type: forward
+      LoadBalancerArn: !Ref ALB
+      Port: 80
+      Protocol: HTTP  

@@ -1,0 +1,43 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Application_Layer Template
+
+Parameters:
+  Namebase:
+    Type: String
+    Default: lecture10
+  
+Resources:
+# rds作成
+  RDS:
+    Type: AWS::RDS::DBInstance
+    Properties:
+    # パブリックアクセス
+      StorageType: gp2
+      AllocatedStorage : 20
+      PubliclyAccessible: false
+    # インスタンス識別子
+      AvailabilityZone: !Select 
+        - 0
+        - Fn::GetAZs: !Ref AWS::Region
+      DBInstanceClass: db.t3.micro
+      Port: 3306
+      BackupRetentionPeriod: 7
+      MasterUsername: admin
+      MasterUserPassword: "{{resolve:ssm-secure:rdskey:1}}"
+      DBInstanceIdentifier: !Sub ${Namebase}-rds
+      DBName: RDS10
+      Engine: MySQL
+      EngineVersion: 8.0.35
+      DBSubnetGroupName: !Ref RDSSubnetgroup
+      VPCSecurityGroups:
+        - !ImportValue lecture10-SecurityGroupRDS
+        
+  # サブネットグループ
+  RDSSubnetgroup:
+    Type: AWS::RDS::DBSubnetGroup
+    Properties:
+      DBSubnetGroupDescription: for RDS
+      DBSubnetGroupName: SampleRDSSubnetgroup
+      SubnetIds:
+        - !ImportValue lecture10-PrivateSubnet1id
+        - !ImportValue lecture10-PrivateSubnet2id  
