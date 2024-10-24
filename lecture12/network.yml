@@ -195,4 +195,3 @@ Outputs:
     Value: !Ref  PublicSubnet2  
     Export:
       Name: !Sub ${NameBase}-PrivateSubnet2id  
-      
