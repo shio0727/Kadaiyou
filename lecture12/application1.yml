@@ -101,6 +101,7 @@ Outputs:
     Description: The Instance ID
     Value: !Ref EC2
     Export:
-      Name: !Sub  ${NameBase}-ec2id
+      Name: !Sub  ${NameBase}-ec2id  
+      
 
   

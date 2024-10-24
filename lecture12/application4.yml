@@ -29,4 +29,5 @@ Resources:
               Days: 365
       Tags:
         - Key: Name
-          Value: !Sub ${NameBase}-bucket
+          Value: !Sub ${NameBase}-bucket  
+          

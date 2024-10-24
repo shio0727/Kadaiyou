@@ -52,4 +52,5 @@ Resources:
           Type: forward
       LoadBalancerArn: !Ref ALB
       Port: 80
-      Protocol: HTTP
+      Protocol: HTTP  
+      

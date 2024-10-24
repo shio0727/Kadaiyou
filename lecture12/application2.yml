@@ -40,4 +40,5 @@ Resources:
       DBSubnetGroupName: SampleRDSSubnetgroup
       SubnetIds:
         - !ImportValue lecture10-PrivateSubnet1id
-        - !ImportValue lecture10-PrivateSubnet2id
+        - !ImportValue lecture10-PrivateSubnet2id  
+        
