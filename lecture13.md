@@ -5,25 +5,25 @@
 
 ### 1 circleciに環境変数とSSH Keysを設定  
 - 環境変数「AWS_ACCESS_KEY_ID」「AWS_DEFAULT_REGION」「AWS_SECRET_ACCESS_KEY」を設定  
-![環境変数]()
+![環境変数](img13/1.png)
 - 「SSH Keys」を設定  
-![SSH]()
+![SSH](img13/2.png)
 
 
 ### 2 cloudformationの実施  
 RDSのパスワードはシークレットマネージャーで事前に決めたものを使用  
-![cloudformation]()  
+![cloudformation](img13/cloudformation.png)  
 [cloudformationテンプレートファイル]()
 
 ### 3 ansibleの実施  
 circleciをコントロールノード、AWSのEC2（前工程で作成）をターゲットノードとして、第三回講義の際に配布されたサンプルアプリケーションのデプロイを行った。 
-![ansible]()  
-![deploy]()  
+![ansible](img13/ansible.png)  
+![deploy](img13/deploy.png)  
 [ansibleのテンプレートファイル]()  
 
 ### 4 serverspecの実施  
 circleci上でserverspecを実施した。  
-![serverspec]()
+![serverspec](img13/serverspec.png)
 [ansibleのテンプレートファイル]()   
 ### 5 感想  
 ansibleの成功までかなり時間を要してしまった。cloudformationで作成したリソースの値をansibleに渡す設定に手間取ってしまった。環境変数とは何かもう一度見直す良い機会になった。  
