@@ -1,30 +1,30 @@
 ## 第十三回課題  
 ### 課題内容  
-- circleciにansibleとserverspecを追加して実行する。  
+- CirCleciにAnsibleとServerSpecを追加して実行する。  
 [課題に使用したリポジトリはこちら]()  
 
-### 1 circleciに環境変数とSSH Keysを設定  
+### 1 CirCleciに環境変数とSSH Keysを設定  
 - 環境変数「AWS_ACCESS_KEY_ID」「AWS_DEFAULT_REGION」「AWS_SECRET_ACCESS_KEY」を設定  
 ![環境変数](img13/1.png)
 - 「SSH Keys」を設定  
 ![SSH](img13/2.png)
 
 
-### 2 cloudformationの実施  
+### 2 Cloudformationの実施  
 RDSのパスワードはシークレットマネージャーで事前に決めたものを使用  
 ![cloudformation](img13/cloudformation.png)  
-[cloudformationテンプレートファイル]()
+[Cloudformationテンプレートファイル]()
 
-### 3 ansibleの実施  
-circleciをコントロールノード、AWSのEC2（前工程で作成）をターゲットノードとして、第三回講義の際に配布されたサンプルアプリケーションのデプロイを行った。 
+### 3 Ansibleの実施  
+CirCleciをコントロールノード、AWSのEC2（前工程で作成）をターゲットノードとして、第三回講義の際に配布されたサンプルアプリケーションのデプロイを行った。 
 ![ansible](img13/ansible.png)  
 ![deploy](img13/deploy.png)  
-[ansibleのテンプレートファイル]()  
+[Ansibleのテンプレートファイル]()  
 
 ### 4 serverspecの実施  
 circleci上でserverspecを実施した。  
-![serverspec](img13/serverspec.png)
+![ServerSpec](img13/serverspec.png)
 [ansibleのテンプレートファイル]()   
 ### 5 感想  
-ansibleの成功までかなり時間を要してしまった。cloudformationで作成したリソースの値をansibleに渡す設定に手間取ってしまった。環境変数とは何かもう一度見直す良い機会になった。  
+Ansibleの成功までかなり時間を要してしまった。Cloudformationで作成したリソースの値をAnsibleに渡す設定に手間取ってしまった。環境変数とは何かもう一度見直す良い機会になった。  
 手動でアプリケーションを起動させる時とは違った難しさがあったが、一度起動できてしまえば再現性が高いので、タイムパフォーマンス的には良いのではないかと思った。
